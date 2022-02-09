@@ -196,7 +196,7 @@ p_polyf_t composition_polynome (p_polyf_t p, p_polyf_t q)
 
   for (int i = 0; i < p->degre + 1; i++){
     p_polyf_t pl= multiplication_polynome_scalaire(puissance_polynome(q, i), p->coeff[i]);
-    comp->coeff[i] += pl->coeff;
+    comp->coeff[i] += pl->coeff[i];
   }
   
 
