@@ -3,20 +3,20 @@ all: test_poly perf_poly
 GCC_OPT= -Wall
 
 perf_poly: perf_poly.o poly.o
-	gcc -o perf_poly perf_poly.o poly.o
+	gcc -o perf_poly perf_poly.o poly.o -lm
 
-perf_poly.o: perf_poly.c poly.h
-	gcc $(GCC_OPT) -c perf_poly.c
+perf_poly.o: perf_poly.c poly.h 
+	gcc $(GCC_OPT) -c perf_poly.c -lm
 
 
 test_poly: test_poly.o poly.o
-	gcc -o test_poly test_poly.o poly.o
+	gcc -o test_poly test_poly.o poly.o -lm
 
-test_poly.o: test_poly.c poly.h
-	gcc $(GCC_OPT) -c test_poly.c
+test_poly.o: test_poly.c poly.h 
+	gcc $(GCC_OPT) -c test_poly.c -lm
 
-poly.o: poly.c poly.h
-	gcc $(GCC_OPT) -c poly.c
+poly.o: poly.c poly.h 
+	gcc $(GCC_OPT) -c poly.c -lm
 
 clean:
 	rm -f test_poly perf_poly *.o *~
