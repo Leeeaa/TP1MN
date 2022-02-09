@@ -186,9 +186,21 @@ p_polyf_t puissance_polynome (p_polyf_t p, int n)
 
 p_polyf_t composition_polynome (p_polyf_t p, p_polyf_t q)
 {
-  /*
-    p O q
-  */
+  p_polyf_t comp = malloc(sizeof(float) * (p->degre)*(q->degre));
+  comp->degre = p->degre * q->degre;
+
+  for (int i = 0; i < comp->degre + 1; i++)
+  {
+    comp->coeff[i] = 0;
+  } 
+
+  for (int i = 0; i < p->degre + 1; i++){
+    p_polyf_t pl= multiplication_polynome_scalaire(puissance_polynome(q, i), p->coeff[i]);
+    comp->coeff[i] += pl->coeff;
+  }
+  
+
+
 
   return NULL ;
 }
