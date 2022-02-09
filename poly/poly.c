@@ -143,11 +143,12 @@ p_polyf_t multiplication_polynome_scalaire (p_polyf_t p, float alpha)
 
 float eval_polynome (p_polyf_t p, float x)
 {
-  /* 
-     valeur du polynome pour la valeur de x
-  */
+  float Val; 
+  for (int i = 0; i < p->degre + 1; i++){
+    Val= pow((p->coeff[i])*x, p->degre );
+  }
 
-  return 0.0 ;
+  return Val ;
 }
 
 p_polyf_t multiplication_polynomes (p_polyf_t p1, p_polyf_t p2)
