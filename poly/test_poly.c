@@ -6,7 +6,7 @@
 
 int main (int argc, char **argv)
 {
-  p_polyf_t p1, p2 ;
+  /*p_polyf_t p1, p2 ;
   
   if (argc != 3)
     {
@@ -18,10 +18,13 @@ int main (int argc, char **argv)
   p2 = lire_polynome_float (argv [2]) ;
 
   ecrire_polynome_float (p1) ;
-  ecrire_polynome_float (p2) ;
+  ecrire_polynome_float (p2) ;*/
 
-  /*
-    ajouter du code pour tester les fonctions
-    sur les polynomes
-  */
+  /*teste pour la fonction eval */
+   p_polyf_t p;
+   float val;
+   p = creer_polynome (1);
+   init_polynome(p, 1);
+   val= eval_polynome(p, 1);
+   printf("%f",val);
 }
