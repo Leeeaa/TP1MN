@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "poly.h"
-
+#include <math.h>
 #include <x86intrin.h>
 
 p_polyf_t creer_polynome (int degre)
@@ -147,7 +146,7 @@ float eval_polynome (p_polyf_t p, float x)
 {
   float Val=0; 
   for (int i = 0; i < p->degre + 1; i++){
-    Val+= pow((p->coeff[i])*x, p->degre );
+    Val+= pow((p->coeff[i])*x,(p->degre));
   }
 
   return Val ;
