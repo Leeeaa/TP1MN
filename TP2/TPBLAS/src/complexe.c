@@ -1,4 +1,5 @@
 #include "complexe.h"
+#include <stdio.h>
 
 complexe_float_t add_complexe_float (const complexe_float_t c1, const complexe_float_t c2)
 {
@@ -59,8 +60,8 @@ complexe_float_t div_complexe_float (const complexe_float_t c1, const complexe_f
 {
   complexe_float_t r ;
 
-  if ((float)c2.real == 0 and (float)c2.imaginary == 0){
-    return -1;
+  if ((float)c2.real == 0 && (float)c2.imaginary == 0){
+    return NULL;
   } 
 
   /* 
