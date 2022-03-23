@@ -1,4 +1,4 @@
-all: test_complexe4 test_complexe3 test_complexe2 test_complexe test_dot test_dot_dyn
+all: test_complexe test_complexe4 test_complexe3 test_complexe2 test_dot test_dot_dyn
 
 INC_DIR=../include
 

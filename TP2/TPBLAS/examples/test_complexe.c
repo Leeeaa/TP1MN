@@ -15,31 +15,31 @@ int main (int argc, char **argv)
  complexe_float_t c3; 
  c3 = mult_complexe_float(c1,c2);
  if( c3.real== -9.0 && c3.imaginary==12.0){
-   print("true");
+   printf("true\n");
  }
- else print("false");
+ else printf("false\n");
  complexe_float_t c4;
  c4 = div_complexe_float(c1,c2);
  if( c4.real== -6.8 && c4.imaginary==0.0 ){
-   print("true");
+   printf("true\n");
  }
- else print("false");
+ else printf("false\n");
 
 
  complexe_double_t cd1 ={1.00, 2.00};
  complexe_double_t cd2 ={1.00, 2.00};
  complexe_double_t cd3;
  cd3 = mult_complexe_double(cd1,cd2);
- if( c3.real== -9.00 && c3.imaginary==12.00){
-   print("true");
+ if( cd3.real== -9.00 && cd3.imaginary==12.00){
+   printf("true\n");
  }
- else print("false");
+ else printf("false\n");
  complexe_double_t cd4;
  cd4 = div_complexe_double(cd1,cd2);
  if( cd4.real== 6.75 && cd4.imaginary==0.00 ){
-   print("true");
+   printf("true\n");
  }
- else print("false");
+ else printf("false\n");
 
  struct timeval start, end ;
  
