@@ -1,4 +1,5 @@
 #include "swap.c"
+#include <stdio.h>
 
 int main()
 {
@@ -9,7 +10,7 @@ int main()
     mncblas_sswap(10,X,1,Y,1);
     for (int i = 0; i < 10; i++)
     {
-        printf("Valeur %d : %d", i, Y[i]);
+        printf("Valeur %d : %lf \n", i, Y[i]);
     }
     
     return 0;
