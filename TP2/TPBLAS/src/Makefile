@@ -26,8 +26,8 @@ complexe.o: $(INC_DIR)/complexe.h complexe.c
 	gcc $(OPTIONS) -c complexe.c
 
 # BLAS 1
-test_swap: test_swap.o swap.o
-	gcc -o test_swap test_swap.o swap.o
+test_swap: test_swap.o
+	gcc -o test_swap test_swap.o
 
 test_swap.o: test_swap.c
 	gcc  $(OPTIONS) -c test_swap.c
