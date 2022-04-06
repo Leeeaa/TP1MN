@@ -51,7 +51,7 @@ void mncblas_zcopy(const int N, const void *X, const int incX,
 
   for (; ((i < N) && (j < N)) ; i += incX, j += incY)
     {
-      ((complexe_float_t*)Y)[j] = ((complexe_float_t*)X)[i];
+      ((complexe_double_t*)Y)[j] = ((complexe_double_t*)X)[i];
     }
 
   return ;
