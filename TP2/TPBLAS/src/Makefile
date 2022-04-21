@@ -1,7 +1,7 @@
 # une bibliotheque statique (libmnblas.a)
 # une bibliotheque dynamique (libmnblasdyn.so)
 
-all: libmnblas.a libmnblasdyn.so test_swap
+all: libmnblas.a libmnblasdyn.so test_swap test_copy
 
 LIB_DIR=../lib
 INC_DIR=../include
@@ -31,6 +31,12 @@ test_swap: test_swap.o
 
 test_swap.o: test_swap.c
 	gcc  $(OPTIONS) -c test_swap.c
+
+test_copy: test_copy.o
+	gcc -o test_copy test_copy.o
+
+test_copy.o: test_copy.c
+	gcc  $(OPTIONS) -c test_copy.c
 
 copy.o : copy.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS) -c copy.c
