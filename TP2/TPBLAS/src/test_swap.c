@@ -16,36 +16,36 @@ int main()
        // printf("Valeur %d : %lf \n", i, Xf[i]);
        // printf("Valeur %d : %lf \n", i, Yf[i]);
     }
-
-    mncblas_sswap(10,Xfbis,2,Yf,1);
+    int incr = 2;
+    mncblas_sswap(10,Xfbis,incr,Yf,1);
     for (int i = 0; i < 10; i++)
     {
-        printf("Valeur %d : %lf \n", i, Xfbis[i]);
-        printf("Valeur %d : %lf \n", i, Yf[i]);
+        printf("Valeurx %d : %lf \n", i, Xfbis[i*incr]);
+        printf("Valeury %d : %lf \n", i, Yf[i]);
     }
 
-    /* affiche  Valeur 0 : 10.000000 
-                Valeur 0 : 0.000000 
-                Valeur 1 : 1.000000 
-                Valeur 1 : 2.000000 
-                Valeur 2 : 11.000000 
-                Valeur 2 : 4.000000 
-                Valeur 3 : 3.000000 
-                Valeur 3 : 6.000000 
-                Valeur 4 : 12.000000 
-                Valeur 4 : 8.000000 
-                Valeur 5 : 5.000000 
-                Valeur 5 : 15.000000 
-                Valeur 6 : 13.000000 
-                Valeur 6 : 16.000000 
-                Valeur 7 : 7.000000 
-                Valeur 7 : 17.000000 
-                Valeur 8 : 14.000000 
-                Valeur 8 : 18.000000 
-                Valeur 9 : 9.000000 
-                Valeur 9 : 19.000000 
-    -> problème ?
-    */
+        /* affiche  Valeur 0 : 10.000000 
+                    Valeur 0 : 0.000000 
+                    Valeur 1 : 11.000000 
+                    Valeur 1 : 2.000000 
+                    Valeur 2 : 12.000000 
+                    Valeur 2 : 4.000000 
+                    Valeur 3 : 13.000000 
+                    Valeur 3 : 6.000000 
+                    Valeur 4 : 14.000000 
+                    Valeur 4 : 8.000000 
+                    Valeur 5 : 20.000000 
+                    Valeur 5 : 15.000000 
+                    Valeur 6 : 22.000000 
+                    Valeur 6 : 16.000000 
+                    Valeur 7 : 24.000000 
+                    Valeur 7 : 17.000000 
+                    Valeur 8 : 26.000000 
+                    Valeur 8 : 18.000000 
+                    Valeur 9 : 28.000000 
+                    Valeur 9 : 19.000000 
+        -> problème
+        */
 
 
     // ------------ test fonction dswap --------------- 
