@@ -20,8 +20,8 @@ int main()
     mncblas_sswap(10,Xfbis,incr,Yf,1);
     for (int i = 0; i < 10; i++)
     {
-        printf("Valeurx %d : %lf \n", i, Xfbis[i*incr]);
-        printf("Valeury %d : %lf \n", i, Yf[i]);
+        //printf("Valeurx %d : %lf \n", i, Xfbis[i*incr]);
+        //printf("Valeury %d : %lf \n", i, Yf[i]);
     }
 
         /* affiche  Valeur 0 : 10.000000 
@@ -47,6 +47,8 @@ int main()
         -> problème
         */
 
+    printf("voir test sswap avec une incrémentation de 2 \n");
+
 
     // ------------ test fonction dswap --------------- 
     double Xd[10] = {0,1,2,3,4,5,6,7,8,9};
@@ -68,20 +70,11 @@ int main()
     complexe_float_t Xc[3] = {c1, c2, c3};
     complexe_float_t Yc[3] = {c3, c2, c1};
 
-    mncblas_cswap(2,Xc,1,Yc,1);
+    mncblas_cswap(3,Xc,1,Yc,1);
     for (int i = 0; i < 3; i++)
     {
         //printf("Valeur %d : %lf, %lf \n", i,  Xc[i].real, Xc[i].imaginary);
         //printf("Valeur %d : %lf, %lf \n", i,  Yc[i].real, Yc[i].imaginary);
-
-        /* affiche  Valeur 0 : 3.000000, 4.000000 
-                    Valeur 0 : 1.000000, 1.000000 
-                    Valeur 1 : 2.000000, 2.000000 
-                    Valeur 1 : 2.000000, 2.000000 
-                    Valeur 2 : 3.000000, 4.000000 
-                    Valeur 2 : 1.000000, 1.000000 
-        -> problème ?
-        */
 
     }
        
@@ -96,22 +89,14 @@ int main()
     complexe_double_t Yz[3] = {z3, z2, z1};
 
 
-    mncblas_zswap(2,Xz,1,Yz,1);
+    mncblas_zswap(3,Xz,1,Yz,1);
     for (int i = 0; i < 3; i++)
     {
         //printf("Valeur %d : %lf, %lf \n", i, Xz[i].real, Xz[i].imaginary);
         //printf("Valeur %d : %lf, %lf \n", i, Yz[i].real, Yz[i].imaginary);
-
-        /* affiche  Valeur 0 : 5.000000, 6.000000 
-                    Valeur 0 : 1.000000, 2.000000 
-                    Valeur 1 : 3.000000, 4.000000 
-                    Valeur 1 : 3.000000, 4.000000 
-                    Valeur 2 : 5.000000, 6.000000 
-                    Valeur 2 : 1.000000, 2.000000 
-        -> même problème ?
-        */
-
     }
+
+
            
     return 0;
 
