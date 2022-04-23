@@ -50,7 +50,7 @@ copy.o : copy.c $(INC_DIR)/mnblas.h
 swap.o : swap.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c swap.c
 
-dot.o : dot.c $(INC_DIR)/mnblas.h
+dot.o : dot.c $(INC_DIR)/mnblas.h #complexe.h
 	gcc  $(OPTIONS) -c dot.c
 
 # BLAS 2
