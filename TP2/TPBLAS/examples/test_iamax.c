@@ -42,7 +42,7 @@ int main (int argc, char **argv)
    {
        for (int i = 0; i < VECSIZE; i++)
        {
-           vfloat1[i] = 3.0;
+           vfloat1[i] = 3.0+i;
        }
      start_tsc = _rdtsc () ;
         res = mncblas_samax (VECSIZE, vfloat1, (const int)1, max);
@@ -50,7 +50,7 @@ int main (int argc, char **argv)
      
      calcul_flop_tsc ("mncblas_samax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
- printf ("at index %d : %f\n", res, *((float*)max));
+ printf ("max at index index %d : %f\n", res, *((float*)max));
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -58,7 +58,7 @@ int main (int argc, char **argv)
    {
         for (int j = 0; j < VECSIZE; j++)
         {
-            vfloat1[i] = 3.0;
+            vfloat1[i] = 3.0+i;
         }
      
      TOP_MICRO(start) ;
@@ -67,7 +67,7 @@ int main (int argc, char **argv)
      
      calcul_flop_micro ("mncblas_samax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-printf ("at index %d : %f\n", res, *((float*)max));
+printf ("max at index index %d : %f\n", res, *((float*)max));
  printf ("==========================================================\n") ;
 
 
@@ -84,7 +84,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
    {
        for (int i = 0; i < VECSIZE; i++)
        {
-           vdouble1[i] = 3.0;
+           vdouble1[i] = 3.0+i;
        }
     
      start_tsc = _rdtsc () ;
@@ -93,7 +93,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
      
      calcul_flop_tsc ("mncblas_damax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
- printf ("at index %d : %lf\n", res, *((double*)max));
+ printf ("max at index index %d : %lf\n", res, *((double*)max));
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -101,7 +101,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
    {
         for (int j = 0; j < VECSIZE; j++)
         {
-            vdouble1[i] = 3.0;
+            vdouble1[i] = 3.0+i;
         }
      
      TOP_MICRO(start) ;
@@ -110,7 +110,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
      
      calcul_flop_micro ("mncblas_damax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- printf ("at index %d : %lf\n", res, *((double*)max));
+ printf ("max at index index %d : %lf\n", res, *((double*)max));
  printf ("==========================================================\n") ;
 
 
@@ -126,7 +126,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
    {
       for (int i = 0; i < VECSIZE; i++)
        {
-            vcomplexefloat1[i] = (complexe_float_t){3.0,4.5};
+            vcomplexefloat1[i] = (complexe_float_t){3.0+i,4.5+i};
        }
      res = 0.0 ;
     
@@ -136,7 +136,7 @@ printf ("at index %d : %f\n", res, *((float*)max));
      
      calcul_flop_tsc ("mncblas_camax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
+printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -144,7 +144,7 @@ printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((comple
    {
       for (int i = 0; i < VECSIZE; i++)
        {
-            vcomplexefloat1[i] = (complexe_float_t){3.0,4.5};
+            vcomplexefloat1[i] = (complexe_float_t){3.0+i,4.5+i};
        }
      
      TOP_MICRO(start) ;
@@ -153,7 +153,7 @@ printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((comple
      
      calcul_flop_micro ("mncblas_camax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
+printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
  printf ("==========================================================\n") ;
 
 
@@ -169,7 +169,7 @@ printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((comple
    {
        for (int i = 0; i < VECSIZE; i++)
        {
-            vcomplexedouble1[i] = (complexe_double_t){3.0,4.5};
+            vcomplexedouble1[i] = (complexe_double_t){3.0+i,4.5+i};
        }
     
      start_tsc = _rdtsc () ;
@@ -178,7 +178,7 @@ printf ("at index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((comple
      
      calcul_flop_tsc ("mncblas_zamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-printf ("at index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
+printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -186,7 +186,7 @@ printf ("at index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((com
    {
        for (int i = 0; i < VECSIZE; i++)
        {
-            vcomplexedouble1[i] = (complexe_double_t){3.0,4.5};
+            vcomplexedouble1[i] = (complexe_double_t){3.0+i,4.5+i};
        }
      
      TOP_MICRO(start) ;
@@ -195,7 +195,7 @@ printf ("at index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((com
      
      calcul_flop_micro ("mncblas_zamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- printf ("at index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
+ printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
  printf ("==========================================================\n") ;
 
 }

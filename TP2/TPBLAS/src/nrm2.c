@@ -53,7 +53,7 @@ float mncblas_cnrm2(const int N, const void *X, const int incX)
   return cnorm2;
 }
 
-double mncblas_znrm2(const int N, const void *X, const int incX, void* minimum)
+double mncblas_znrm2(const int N, const void *X, const int incX)
 {
    //done
   register unsigned int i = 0 ;
