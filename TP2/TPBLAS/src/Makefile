@@ -1,7 +1,7 @@
 # une bibliotheque statique (libmnblas.a)
 # une bibliotheque dynamique (libmnblasdyn.so)
 
-all: libmnblas.a libmnblasdyn.so test_swap test_copy test_dot
+all: libmnblas.a libmnblasdyn.so
 
 LIB_DIR=../lib
 INC_DIR=../include
@@ -26,23 +26,6 @@ complexe.o: $(INC_DIR)/complexe.h complexe.c
 	gcc $(OPTIONS) -c complexe.c
 
 # BLAS 1
-test_swap: test_swap.o
-	gcc -o test_swap test_swap.o
-
-test_swap.o: test_swap.c
-	gcc  $(OPTIONS) -c test_swap.c
-
-test_copy: test_copy.o
-	gcc -o test_copy test_copy.o
-
-test_copy.o: test_copy.c
-	gcc  $(OPTIONS) -c test_copy.c
-
-test_dot: test_dot.o
-	gcc -o test_dot test_dot.o
-
-test_dot.o: test_dot.c
-	gcc  $(OPTIONS) -c test_dot.c
 
 copy.o : copy.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS) -c copy.c
@@ -50,7 +33,7 @@ copy.o : copy.c $(INC_DIR)/mnblas.h
 swap.o : swap.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c swap.c
 
-dot.o : dot.c $(INC_DIR)/mnblas.h #complexe.h
+dot.o : dot.c $(INC_DIR)/mnblas.h
 	gcc  $(OPTIONS) -c dot.c
 
 # BLAS 2
