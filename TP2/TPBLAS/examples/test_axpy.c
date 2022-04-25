@@ -61,10 +61,10 @@ int main (int argc, char **argv)
      
      calcul_flop_tsc ("mncblas_saxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-  for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = %f", i, vfloat2[i]);
-  }
+  // for (int i = 0; i < VECSIZE; i++)
+  // {
+  //   printf("res %d = %f\n", i, vfloat2[i]);
+  // }
   
  printf ("==========================================================\n") ;
  
@@ -84,10 +84,10 @@ int main (int argc, char **argv)
      
      calcul_flop_micro ("mncblas_saxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = %f", i, vfloat2[i]);
-  }
+//  for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = %f\n", i, vfloat2[i]);
+//   }
  printf ("==========================================================\n") ;
 
 
@@ -116,10 +116,10 @@ int main (int argc, char **argv)
      
      calcul_flop_tsc ("mncblas_daxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = %lf", i, vdouble2[i]);
-  }
+// for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = %lf\n", i, vdouble2[i]);
+//   }
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -138,10 +138,10 @@ for (int i = 0; i < VECSIZE; i++)
      
      calcul_flop_micro ("mncblas_daxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = %lf", i, vdouble2[i]);
-  }
+// for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = %lf\n", i, vdouble2[i]);
+//   }
  printf ("==========================================================\n") ;
 
 
@@ -172,10 +172,10 @@ for (int i = 0; i < VECSIZE; i++)
      
      calcul_flop_tsc ("mncblas_caxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = (%f, %f)", i, vcomplexefloat1[i].real, vcomplexefloat2[i].imaginary);
-  }
+// for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = (%f, %f)\n", i, vcomplexefloat1[i].real, vcomplexefloat2[i].imaginary);
+//   }
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -194,10 +194,10 @@ for (int i = 0; i < VECSIZE; i++)
      
      calcul_flop_micro ("mncblas_caxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = (%f, %f)", i, vcomplexefloat1[i].real, vcomplexefloat2[i].imaginary);
-  }
+//  for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = (%f, %f)\n", i, vcomplexefloat1[i].real, vcomplexefloat2[i].imaginary);
+//   }
  printf ("==========================================================\n") ;
 
 
@@ -228,10 +228,10 @@ for (int i = 0; i < VECSIZE; i++)
      
      calcul_flop_tsc ("mncblas_zaxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = (%lf, %lf)", i, vcomplexedouble1[i].real, vcomplexedouble2[i].imaginary);
-  }
+// for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = (%lf, %lf)\n", i, vcomplexedouble1[i].real, vcomplexedouble2[i].imaginary);
+//   }
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -250,10 +250,10 @@ for (int i = 0; i < VECSIZE; i++)
      
      calcul_flop_micro ("mncblas_zaxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-for (int i = 0; i < VECSIZE; i++)
-  {
-    printf("res %d = (%lf, %lf)", i, vcomplexedouble1[i].real, vcomplexedouble2[i].imaginary);
-  }
+// for (int i = 0; i < VECSIZE; i++)
+//   {
+//     printf("res %d = (%lf, %lf)\n", i, vcomplexedouble1[i].real, vcomplexedouble2[i].imaginary);
+//   }
  printf ("==========================================================\n") ;
 
 }
