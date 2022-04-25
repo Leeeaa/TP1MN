@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <math.h>
 
+//Computes the global index of the element of a distributed vector with maximum absolute value.
+
 int mncblas_samax(const int N, const float *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
   float max = X[0] ;
   int index = 0 ;
   
@@ -19,7 +20,7 @@ int mncblas_samax(const int N, const float *X, const int incX, void* maximum)
       }
  
     }
-    *((float*)maximum) = max;
+    *((float*)maximum) = X[index];
 
   return index;
 }
@@ -28,7 +29,6 @@ int mncblas_damax(const int N, const double *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
   double max = X[0] ;
   int index = 0 ;
   
@@ -40,7 +40,7 @@ int mncblas_damax(const int N, const double *X, const int incX, void* maximum)
       }
  
     }
-    *((double*)maximum) = max;
+    *((double*)maximum) = X[index];
 
   return index;
 }
@@ -49,7 +49,6 @@ int mncblas_camax(const int N, const void *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
   float max = pow( (((complexe_float_t*)X)[0].real) * (((complexe_float_t*)X)[0].real) + (((complexe_float_t*)X)[0].imaginary) * (((complexe_float_t*)X)[0].imaginary), 0.5 );
   int index = 0 ;
 
@@ -58,12 +57,12 @@ int mncblas_camax(const int N, const void *X, const int incX, void* maximum)
       float len = pow( (((complexe_float_t*)X)[i].real) * (((complexe_float_t*)X)[i].real) + (((complexe_float_t*)X)[i].imaginary) * (((complexe_float_t*)X)[i].imaginary), 0.5 );
       if (len > max)
       {
-        max = (complexe_float_t*)X[i];
+        max = len;
         index = i;
       }
  
     }
-    *((float*)maximum) = max;
+    *((complexe_float_t*)maximum) = ((complexe_float_t*)X)[index];
 
   return index;
 }
@@ -72,7 +71,6 @@ int mncblas_zamax(const int N, const void *X, const int incX, void* maximum)
 {
    //done
   register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
   float max = pow( (((complexe_double_t*)X)[0].real) * (((complexe_double_t*)X)[0].real) + (((complexe_double_t*)X)[0].imaginary) * (((complexe_double_t*)X)[0].imaginary), 0.5 );
   int index = 0 ;
 
@@ -81,12 +79,12 @@ int mncblas_zamax(const int N, const void *X, const int incX, void* maximum)
       double len = pow( (((complexe_double_t*)X)[i].real) * (((complexe_double_t*)X)[i].real) + (((complexe_double_t*)X)[i].imaginary) * (((complexe_double_t*)X)[i].imaginary), 0.5 );
       if (len > max)
       {
-        max = (complexe_double_t*)X[i];
+        max = len;
         index = i;
       }
  
     }
-    *((double*)maximum) = max;
+    *((complexe_double_t*)maximum) = ((complexe_double_t*)X)[index];
 
   return index;
 
