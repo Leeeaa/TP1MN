@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-//Computes the global index of the element of a distributed vector with maximum absolute value.
+//Computes the global index of the element of a distributed vector with minimum absolute value.
 
 int mncblas_siamin(const int N, const float *X, const int incX, void* minimum)
 {
