@@ -57,16 +57,15 @@ double mncblas_ddot(const int N, const double *X, const int incX,
 void   mncblas_cdotu_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotu)
 {
-  //todo
+  //done
   register unsigned int i = 0 ;
   register unsigned int j = 0 ;
 
-  complexe_float_t sum = (complexe_float_t){0,0}; // ou (complexe_float_t){0,0} ?
+  complexe_float_t sum = (complexe_float_t){0,0};
 
   for (i = 0 ; i < N ; i += incX)
     {
-      printf ("test");
-      sum = add_complexe_float(((complexe_float_t*)X)[i],((complexe_float_t*)Y)[j]);
+      sum = mult_complexe_float(((complexe_float_t*)X)[i],((complexe_float_t*)Y)[j]);
 
       *((complexe_float_t*)(dotu)) = add_complexe_float(sum,*((complexe_float_t*)dotu));
       j+=incY ;
@@ -79,7 +78,21 @@ void   mncblas_cdotu_sub(const int N, const void *X, const int incX,
 void   mncblas_cdotc_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotc)
 {
-  /* a completer */
+  //done
+  register unsigned int i = 0 ;
+  register unsigned int j = 0 ;
+
+  complexe_float_t sum = (complexe_float_t){0,0}; // 
+
+  for (i = 0 ; i < N ; i += incX)
+    {
+      sum = mult_complexe_float( conj_complexe_float(((complexe_float_t*)X)[i]),((complexe_float_t*)Y)[j]);
+
+      *((complexe_float_t*)(dotc)) = add_complexe_float(sum,*((complexe_float_t*)dotc));
+      j+=incY ;
+
+    }
+  
   
   return ;
 }
@@ -87,7 +100,20 @@ void   mncblas_cdotc_sub(const int N, const void *X, const int incX,
 void   mncblas_zdotu_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotu)
 {
-  /* a completer */
+  //done
+  register unsigned int i = 0 ;
+  register unsigned int j = 0 ;
+
+  complexe_double_t sum = {0,0}; // ou (complexe_float_t){0,0} ?
+
+  for (i = 0 ; i < N ; i += incX)
+    {
+      sum = mult_complexe_double(((complexe_double_t*)X)[i],((complexe_double_t*)Y)[j]);
+
+      *((complexe_double_t*)(dotu)) = add_complexe_double(sum,*((complexe_double_t*)dotu));
+      j+=incY ;
+
+    }
   
   return ;
 }
@@ -95,7 +121,19 @@ void   mncblas_zdotu_sub(const int N, const void *X, const int incX,
 void   mncblas_zdotc_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotc)
 {
-  /* a completer */
+  register unsigned int i = 0 ;
+  register unsigned int j = 0 ;
+
+  complexe_double_t sum = (complexe_double_t){0,0}; // 
+
+  for (i = 0 ; i < N ; i += incX)
+    {
+      sum = mult_complexe_double(conj_complexe_double(((complexe_double_t*)X)[i]),((complexe_double_t*)Y)[j]);
+
+      *((complexe_double_t*)(dotc)) = add_complexe_double(sum,*((complexe_double_t*)dotc));
+      j+=incY ;
+
+    }
   
   return ;
 }

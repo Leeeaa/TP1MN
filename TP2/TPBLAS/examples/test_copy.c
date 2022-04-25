@@ -1,5 +1,11 @@
-#include "copy.c"
+//#include "../src/copy.c"
 #include <stdio.h>
+
+#include "mnblas.h"
+#include "complexe.h"
+
+#include "flop.h"
+
 
 int main()
 {
@@ -16,37 +22,12 @@ int main()
         //printf("Valeur %d : %lf \n", i, Yf[i]);
     }
 
-    mncblas_scopy(10,Xfbis,2,Yf,1);
+    mncblas_scopy(20,Xfbis,2,Yf,1);
     for (int i = 0; i < 10; i++)
     {
         //printf("Valeur %d : %lf \n", i, Xfbis[i*2]);
         //printf("Valeur %d : %lf \n", i, Yf[i]);
     }
-
-    /* affiche  Valeur 0 : 0.000000 
-                Valeur 0 : 0.000000 
-                Valeur 1 : 2.000000 
-                Valeur 1 : 2.000000 
-                Valeur 2 : 4.000000 
-                Valeur 2 : 4.000000 
-                Valeur 3 : 6.000000 
-                Valeur 3 : 6.000000 
-                Valeur 4 : 8.000000 
-                Valeur 4 : 8.000000 
-                Valeur 5 : 20.000000 
-                Valeur 5 : 15.000000 
-                Valeur 6 : 22.000000 
-                Valeur 6 : 16.000000 
-                Valeur 7 : 24.000000 
-                Valeur 7 : 17.000000 
-                Valeur 8 : 26.000000 
-                Valeur 8 : 18.000000 
-                Valeur 9 : 28.000000 
-                Valeur 9 : 19.000000 
-    -> problème ?
-    */
-
-    printf("voir test scopy avec une incrémentation de 2 \n");
 
     // ------------ test fonction dcopy --------------- 
     double Xd[10] = {0,1,2,3,4,5,6,7,8,9};

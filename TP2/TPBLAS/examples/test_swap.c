@@ -1,5 +1,11 @@
-#include "swap.c"
+//#include "../src/swap.c"
 #include <stdio.h>
+
+#include "mnblas.h"
+#include "complexe.h"
+
+#include "flop.h"
+
 
 int main()
 {
@@ -17,37 +23,12 @@ int main()
        // printf("Valeur %d : %lf \n", i, Yf[i]);
     }
     int incr = 2;
-    mncblas_sswap(10,Xfbis,incr,Yf,1);
+    mncblas_sswap(20,Xfbis,incr,Yf,1);
     for (int i = 0; i < 10; i++)
     {
         //printf("Valeurx %d : %lf \n", i, Xfbis[i*incr]);
         //printf("Valeury %d : %lf \n", i, Yf[i]);
     }
-
-        /* affiche  Valeur 0 : 10.000000 
-                    Valeur 0 : 0.000000 
-                    Valeur 1 : 11.000000 
-                    Valeur 1 : 2.000000 
-                    Valeur 2 : 12.000000 
-                    Valeur 2 : 4.000000 
-                    Valeur 3 : 13.000000 
-                    Valeur 3 : 6.000000 
-                    Valeur 4 : 14.000000 
-                    Valeur 4 : 8.000000 
-                    Valeur 5 : 20.000000 
-                    Valeur 5 : 15.000000 
-                    Valeur 6 : 22.000000 
-                    Valeur 6 : 16.000000 
-                    Valeur 7 : 24.000000 
-                    Valeur 7 : 17.000000 
-                    Valeur 8 : 26.000000 
-                    Valeur 8 : 18.000000 
-                    Valeur 9 : 28.000000 
-                    Valeur 9 : 19.000000 
-        -> problème
-        */
-
-    printf("voir test sswap avec une incrémentation de 2 \n");
 
 
     // ------------ test fonction dswap --------------- 

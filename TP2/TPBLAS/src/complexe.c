@@ -62,3 +62,21 @@ complexe_double_t div_complexe_double (const complexe_double_t c1, const complex
 
   return r ;
 }
+
+complexe_float_t conj_complexe_float (const complexe_float_t c) 
+{
+  complexe_float_t r;
+  r.real = c.real;
+  r.imaginary = -c.imaginary;
+
+  return r;
+}
+
+complexe_double_t conj_complexe_double (const complexe_double_t c) 
+{
+  complexe_double_t r;
+  r.real = c.real;
+  r.imaginary = -c.imaginary;
+
+  return r;
+}

@@ -1,4 +1,4 @@
-all: test_complexe test_complexe4 test_complexe3 test_complexe2 test_dot test_dot_dyn test_swap test_copy
+all: test_complexe test_complexe4 test_complexe3 test_complexe2 test_dot test_dot_dyn test_swap test_copy test_axpy
 
 INC_DIR=../include
 
@@ -7,13 +7,22 @@ LIB_DIR=../lib
 LIBST=-lmnblas
 LIBDYN=-lmnblasdyn
 
-OPTIONS_COMPIL  =-Wall -O2 -fPIC -I$(INC_DIR)
+OPTIONS_COMPIL  =-Wall -O2 -fPIC -I$(INC_DIR) -lm
 
 OPTIONS_LINK_STATIC  = -fopenmp -L$(LIB_DIR) $(LIBST)  
 OPTIONS_LINK_DYN     = -fopenmp -L$(LIB_DIR) $(LIBDYN)  
 
 test_dot: test_dot.o flop.o $(LIB_DIR)/libmnblas.a
 	gcc -o test_dot test_dot.o flop.o $(OPTIONS_LINK_STATIC)
+
+test_swap: test_swap.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_swap test_swap.o flop.o $(OPTIONS_LINK_STATIC)
+
+test_copy: test_copy.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_copy test_copy.o flop.o $(OPTIONS_LINK_STATIC)
+
+test_axpy: test_axpy.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_axpy test_axpy.o flop.o $(OPTIONS_LINK_STATIC)
 
 flop.o: flop.c flop.h
 	gcc $(OPTIONS_COMPIL) -c flop.c
@@ -36,7 +45,6 @@ test_complexe2.o: test_complexe2.c  $(INC_DIR)/complexe2.h
 test_complexe2: test_complexe2.o flop.o
 	gcc -o test_complexe2 test_complexe2.o flop.o $(OPTIONS_LINK_STATIC)
 
-
 test_complexe3.o: test_complexe3.c  $(INC_DIR)/complexe2.h
 	gcc $(OPTIONS_COMPIL) -c test_complexe3.c
 
@@ -52,14 +60,11 @@ test_complexe4: test_complexe4.o flop.o
 test_copy.o: test_copy.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS_COMPIL) -c test_copy.c
 
-test_copy: test_copy.o flop.o $(LIB_DIR)/libmnblas.a
-	gcc -o test_copy test_copy.o flop.o $(OPTIONS_LINK_STATIC)
-
 test_swap.o: test_swap.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS_COMPIL) -c test_swap.c
 
-test_swap: test_swap.o flop.o $(LIB_DIR)/libmnblas.a
-	gcc -o test_swap test_swap.o flop.o $(OPTIONS_LINK_STATIC)
+test_axpy.o: test_axpy.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c test_axpy.c
 
 
 clean:
