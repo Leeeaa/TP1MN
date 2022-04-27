@@ -5,7 +5,7 @@
 
 //Computes the global index of the element of a distributed vector with maximum absolute value.
 
-int mncblas_isamax(const int N, const float *X, const int incX, void* maximum)
+int mnblas_isamax(const int N, const float *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -20,12 +20,11 @@ int mncblas_isamax(const int N, const float *X, const int incX, void* maximum)
       }
  
     }
-    *((float*)maximum) = X[index];
 
   return index;
 }
 
-int mncblas_isamax(const int N, const double *X, const int incX, void* maximum)
+int mnblas_idamax(const int N, const double *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -40,12 +39,11 @@ int mncblas_isamax(const int N, const double *X, const int incX, void* maximum)
       }
  
     }
-    *((double*)maximum) = X[index];
 
   return index;
 }
 
-int mncblas_icamax(const int N, const void *X, const int incX, void* maximum)
+int mnblas_icamax(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -62,12 +60,11 @@ int mncblas_icamax(const int N, const void *X, const int incX, void* maximum)
       }
  
     }
-    *((complexe_float_t*)maximum) = ((complexe_float_t*)X)[index];
 
   return index;
 }
 
-int mncblas_izamax(const int N, const void *X, const int incX, void* maximum)
+int mnblas_izamax(const int N, const void *X, const int incX)
 {
    //done
   register unsigned int i = 0 ;
@@ -84,7 +81,6 @@ int mncblas_izamax(const int N, const void *X, const int incX, void* maximum)
       }
  
     }
-    *((complexe_double_t*)maximum) = ((complexe_double_t*)X)[index];
 
   return index;
 

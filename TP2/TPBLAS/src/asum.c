@@ -6,7 +6,7 @@
 
 //The functions p?asum compute the sum of the magnitudes of elements of a distributed vector sub(x),
 
-float mncblas_sasum(const int N, const float *X, const int incX)
+float mnblas_sasum(const int N, const float *X, const int incX)
 {
   register unsigned int i = 0 ;
   float sasum = 0.0 ;
@@ -21,7 +21,7 @@ float mncblas_sasum(const int N, const float *X, const int incX)
   return sasum ;
 }
 
-double mncblas_dasum(const int N, const double *X, const int incX)
+double mnblas_dasum(const int N, const double *X, const int incX)
 {
   register unsigned int i = 0 ;
   double dasum = 0.0 ;
@@ -36,7 +36,7 @@ double mncblas_dasum(const int N, const double *X, const int incX)
   return dasum ;
 }
 
-float mncblas_scasum(const int N, const void *X, const int incX)
+float mnblas_scasum(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -52,7 +52,7 @@ float mncblas_scasum(const int N, const void *X, const int incX)
   return casum ;
 }
 
-double mncblas_dzasum(const int N, const void *X, const int incX)
+double mnblas_dzasum(const int N, const void *X, const int incX)
 {
   
   register unsigned int i = 0 ;

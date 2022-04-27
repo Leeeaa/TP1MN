@@ -1,7 +1,7 @@
 #include "mnblas.h"
 #include "complexe.h"
 
-void mncblas_saxpy(const int N, const float a, const float *X, const int incX, 
+void mnblas_saxpy(const int N, const float a, const float *X, const int incX, 
                  float *Y, const int incY)
 {
   register unsigned int i = 0 ;
@@ -16,7 +16,7 @@ void mncblas_saxpy(const int N, const float a, const float *X, const int incX,
 }
 
 
-void mncblas_daxpy(const int N, const double a, const double *X, const int incX, 
+void mnblas_daxpy(const int N, const double a, const double *X, const int incX, 
                  double *Y, const int incY)
 {
   register unsigned int i = 0 ;
@@ -30,7 +30,7 @@ void mncblas_daxpy(const int N, const double a, const double *X, const int incX,
   return ;
 }
 
-void mncblas_caxpy(const int N, const void* a, const void *X, const int incX, 
+void mnblas_caxpy(const int N, const void* a, const void *X, const int incX, 
 		                    void *Y, const int incY)
 {
   register unsigned int i = 0 ;
@@ -44,7 +44,7 @@ void mncblas_caxpy(const int N, const void* a, const void *X, const int incX,
   return ;
 }
 
-void mncblas_zaxpy(const int N, const void* a, const void *X, const int incX, 
+void mnblas_zaxpy(const int N, const void* a, const void *X, const int incX, 
 		                    void *Y, const int incY)
 {
   register unsigned int i = 0 ;

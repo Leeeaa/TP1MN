@@ -5,7 +5,7 @@
 
 //The p?nrm2 functions compute the Euclidean norm of a distributed vector sub(x)
 
-float mncblas_snrm2(const int N, const float *X, const int incX)
+float mnblas_snrm2(const int N, const float *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -21,7 +21,7 @@ float mncblas_snrm2(const int N, const float *X, const int incX)
   return norm2;
 }
 
-double mncblas_dnrm2(const int N, const double *X, const int incX)
+double mnblas_dnrm2(const int N, const double *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -37,7 +37,7 @@ double mncblas_dnrm2(const int N, const double *X, const int incX)
   return dnorm2;
 }
 
-float mncblas_scnrm2(const int N, const void *X, const int incX)
+float mnblas_scnrm2(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -53,7 +53,7 @@ float mncblas_scnrm2(const int N, const void *X, const int incX)
   return cnorm2;
 }
 
-double mncblas_dznrm2(const int N, const void *X, const int incX)
+double mnblas_dznrm2(const int N, const void *X, const int incX)
 {
    //done
   register unsigned int i = 0 ;

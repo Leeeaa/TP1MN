@@ -5,7 +5,7 @@
 
 //Computes the global index of the element of a distributed vector with minimum absolute value.
 
-int mncblas_siamin(const int N, const float *X, const int incX, void* minimum)
+int mnblas_isamin(const int N, const float *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -20,12 +20,11 @@ int mncblas_siamin(const int N, const float *X, const int incX, void* minimum)
       }
  
     }
-    *((float*)minimum) = X[index];
 
   return index;
 }
 
-int mncblas_diamin(const int N, const double *X, const int incX, void* minimum)
+int mnblas_idamin(const int N, const double *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -40,12 +39,11 @@ int mncblas_diamin(const int N, const double *X, const int incX, void* minimum)
       }
  
     }
-    *((double*)minimum) = X[index];
 
   return index;
 }
 
-int mncblas_ciamin(const int N, const void *X, const int incX, void* minimum)
+int mnblas_icamin(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -62,12 +60,11 @@ int mncblas_ciamin(const int N, const void *X, const int incX, void* minimum)
       }
  
     }
-    *((complexe_float_t*)minimum) = ((complexe_float_t*)X)[index];
 
   return index;
 }
 
-int mncblas_ziamin(const int N, const void *X, const int incX, void* minimum)
+int mnblas_izamin(const int N, const void *X, const int incX)
 {
    //done
   register unsigned int i = 0 ;
@@ -84,7 +81,7 @@ int mncblas_ziamin(const int N, const void *X, const int incX, void* minimum)
       }
  
     }
-    *((complexe_double_t*)minimum) = ((complexe_double_t*)X)[index];
+
 
   return index;
 
