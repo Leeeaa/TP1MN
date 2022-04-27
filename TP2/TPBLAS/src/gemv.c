@@ -108,42 +108,36 @@ void mncblas_cgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < M ; i+= incY) {
                 sum = (complexe_float_t) {0.0,0.0};
                 for(j = 0; j < N ; j+= incX) {
-                    complexe_float_t temp = mult_complexe_float ((complexe_float_t)(A[i*N+j]),(complexe_float_t)(X[j]));
+                    complexe_float_t temp = mult_complexe_float (((complexe_float_t*)A)[i*N+j],((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         } else if (TransA == MNCblasTrans) {        //cas 1.2
             for(register int i = 0; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(register int j = 0; j < M ; j+= incX) {
-                    complexe_float_t temp = mult_complexe_float ((complexe_float_t)(A[j*N+i]),(complexe_float_t)(X[j]));
+                    complexe_float_t temp = mult_complexe_float (((complexe_float_t*)A)[j*N+i],((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         }
         else if (TransA == MNCblasConjTrans){
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_float_t conjA = (complexe_float_t){((complexe_float_t)(A[j*N+i])).real,((complexe_float_t)(A[j*N+i])).imaginary};
-                    complexe_float_t temp = mult_complexe_float (conjA,(complexe_float_t)(X[j]));
+                    complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[j*N+i]).real,(((complexe_float_t*)A)[j*N+i]).imaginary};
+                    complexe_float_t temp = mult_complexe_float (conjA,((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         }
     } else if (layout == MNCblasColMajor){      //cas col major 2
@@ -151,42 +145,36 @@ void mncblas_cgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < M ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < N ; j+= incX) {
-                    complexe_float_t temp = mult_complexe_float ((complexe_float_t)(A[j*M+i]),(complexe_float_t)(X[j]));
+                    complexe_float_t temp = mult_complexe_float (((complexe_float_t*)A)[j*M+i],(((complexe_float_t*)X)[j]));
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         } else if (TransA == MNCblasTrans) {
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_float_t temp = mult_complexe_float ((complexe_float_t)(A[i*M+j]),(complexe_float_t)(X[j]));
+                    complexe_float_t temp = mult_complexe_float (((complexe_float_t*)A)[i*M+j],((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         }
         else if (TransA == MNCblasConjTrans){
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_float_t conjA = (complexe_float_t){((complexe_float_t)(A[i*M+j])).real,((complexe_float_t)(A[i*M+j])).imaginary};
-                    complexe_float_t temp = mult_complexe_float (conjA,(complexe_float_t)(X[j]));
+                    complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[i*M+j]).real,(((complexe_float_t*)A)[i*M+j]).imaginary};
+                    complexe_float_t temp = mult_complexe_float (conjA,((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
-                complexe_float_t alphaC = (complexe_float_t){alpha,0.0};
-                complexe_float_t betaC = (complexe_float_t){beta,0.0};
-                alphaC = mult_complexe_float(alphaC,sum);
-                betaC = mult_complexe_float(betaC,(complexe_float_t)(Y[i]));
-                (complexe_float_t)(Y[i]) = add_complexe_float(alphaC,betaC);
+                *(complexe_float_t*)alpha = mult_complexe_float(*(complexe_float_t*)alpha, sum);
+                *(complexe_float_t*)beta = mult_complexe_float(*(complexe_float_t*)beta,((complexe_float_t*)Y)[i]);
+                ((complexe_float_t*)Y)[i] = add_complexe_float(*(complexe_float_t*)(alpha),*(complexe_float_t*)beta);
             }
         }
     }
@@ -204,42 +192,36 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < M ; i+= incY) {
                 sum = (complexe_double_t) {0.0,0.0};
                 for(j = 0; j < N ; j+= incX) {
-                    complexe_double_t temp = mult_complexe_double ((complexe_double_t)(A[i*N+j]),(complexe_double_t)(X[j]));
+                    complexe_double_t temp = mult_complexe_double(((complexe_double_t*)A)[i*N+j],((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         } else if (TransA == MNCblasTrans) {        //cas 1.2
             for(register int i = 0; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(register int j = 0; j < M ; j+= incX) {
-                    complexe_double_t temp = mult_complexe_double ((complexe_double_t)(A[j*N+i]),(complexe_double_t)(X[j]));
+                    complexe_double_t temp = mult_complexe_double (((complexe_double_t*)A)[j*N+i],((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         }
         else if (TransA == MNCblasConjTrans){
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_double_t conjA = (complexe_double_t){((complexe_double_t)(A[j*N+i])).real,((complexe_double_t)(A[j*N+i])).imaginary};
-                    complexe_double_t temp = mult_complexe_double (conjA,(complexe_double_t)(X[j]));
+                    complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[j*N+i]).real, (((complexe_double_t*)A)[j*N+i]).imaginary};
+                    complexe_double_t temp = mult_complexe_double (conjA,((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         }
     } else if (layout == MNCblasColMajor){      //cas col major 2
@@ -247,42 +229,36 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < M ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < N ; j+= incX) {
-                    complexe_double_t temp = mult_complexe_double ((complexe_double_t)(A[j*M+i]),(complexe_double_t)(X[j]));
+                    complexe_double_t temp = mult_complexe_double (((complexe_double_t*)A)[j*M+i],((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                  *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         } else if (TransA == MNCblasTrans) {
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_double_t temp = mult_complexe_double ((complexe_double_t)(A[i*M+j]),(complexe_double_t)(X[j]));
+                    complexe_double_t temp = mult_complexe_double (((complexe_double_t*)A)[i*M+j],((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         }
         else if (TransA == MNCblasConjTrans){
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_double_t conjA = (complexe_double_t){((complexe_double_t)(A[i*M+j])).real,((complexe_double_t)(A[i*M+j])).imaginary};
-                    complexe_double_t temp = mult_complexe_double (conjA,(complexe_double_t)(X[j]));
+                    complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[i*M+j]).real, (((complexe_double_t*)A)[i*M+j]).imaginary};
+                    complexe_double_t temp = mult_complexe_double (conjA,((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
-                complexe_double_t alphaC = (complexe_double_t){alpha,0.0};
-                complexe_double_t betaC = (complexe_double_t){beta,0.0};
-                alphaC = mult_complexe_double(alphaC,sum);
-                betaC = mult_complexe_double(betaC,(complexe_double_t)(Y[i]));
-                (complexe_double_t)(Y[i]) = add_complexe_double(alphaC,betaC);
+                *(complexe_double_t*)alpha = mult_complexe_double(*(complexe_double_t*)alpha, sum);
+                *(complexe_double_t*)beta = mult_complexe_double(*(complexe_double_t*)beta,((complexe_double_t*)Y)[i]);
+                ((complexe_double_t*)Y)[i] = add_complexe_double(*(complexe_double_t*)(alpha),*(complexe_double_t*)beta);
             }
         }
     }
