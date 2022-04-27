@@ -34,7 +34,6 @@ int main (int argc, char **argv)
 {
  struct timeval start, end ;
  unsigned long long int start_tsc, end_tsc ;
- float res ;
  
 
 /*
