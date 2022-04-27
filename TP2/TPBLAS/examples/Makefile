@@ -36,6 +36,12 @@ test_iamax: test_iamax.o flop.o $(LIB_DIR)/libmnblas.a
 test_nrm2: test_nrm2.o flop.o $(LIB_DIR)/libmnblas.a
 	gcc -o test_nrm2 test_nrm2.o flop.o $(OPTIONS_LINK_STATIC)
 
+test_gemm: test_gemm.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_gemm test_gemm.o flop.o $(OPTIONS_LINK_STATIC)
+
+test_gemv: test_gemv.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_gemv test_gemv.o flop.o $(OPTIONS_LINK_STATIC)
+
 flop.o: flop.c flop.h
 	gcc $(OPTIONS_COMPIL) -c flop.c
 
@@ -90,6 +96,11 @@ test_iamax.o: test_iamax.c $(INC_DIR)/mnblas.h
 test_nrm2.o: test_nrm2.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS_COMPIL) -c test_nrm2.c
 
+test_gemv.o: test_gemv.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c test_gemv.c
+
+test_gemm.o: test_gemm.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c test_gemm.c
 
 clean:
 	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_complexe3 test_complexe4 *~
