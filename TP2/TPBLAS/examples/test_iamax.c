@@ -28,7 +28,6 @@ int main (int argc, char **argv)
  struct timeval start, end ;
  unsigned long long int start_tsc, end_tsc ;
  int res = 0;
- void* max;
 /*
  * 
  * 
@@ -50,7 +49,7 @@ int main (int argc, char **argv)
      
      calcul_flop_tsc ("mnblas_isamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
- printf ("max at index index %d : %f\n", res, *((float*)max));
+ printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -67,7 +66,7 @@ int main (int argc, char **argv)
      
      calcul_flop_micro ("mnblas_isamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-printf ("max at index index %d : %f\n", res, *((float*)max));
+printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
 
 
@@ -93,7 +92,7 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
      
      calcul_flop_tsc ("mnblas_idamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
- printf ("max at index index %d : %lf\n", res, *((double*)max));
+ printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -110,7 +109,7 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
      
      calcul_flop_micro ("mnblas_idamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- printf ("max at index index %d : %lf\n", res, *((double*)max));
+ printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
 
 
@@ -136,7 +135,7 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
      
      calcul_flop_tsc ("mnblas_icamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
+printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -153,7 +152,7 @@ printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->rea
      
      calcul_flop_micro ("mnblas_icamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
-printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
+printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
 
 
@@ -178,7 +177,7 @@ printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->rea
      
      calcul_flop_tsc ("mnblas_izamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
+printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
  
  init_flop_micro () ;
@@ -195,7 +194,7 @@ printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->
      
      calcul_flop_micro ("mnblas_izamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
- printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
+ printf ("max at index index %d\n", res);
  printf ("==========================================================\n") ;
 
 }
