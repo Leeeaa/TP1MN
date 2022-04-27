@@ -18,8 +18,8 @@ vcomplexe_float_t vcomplexefloat1;
 /*
 float mncblas_snrm2(const int N, const float *X, const int incX)
 double mncblas_dnrm2(const int N, const double *X, const int incX)
-float mncblas_cnrm2(const int N, const void *X, const int incX)
-double mncblas_znrm2(const int N, const void *X, const int incX)
+float mncblas_scnrm2(const int N, const void *X, const int incX)
+double mncblas_dznrm2(const int N, const void *X, const int incX)
 */
 
 
@@ -118,7 +118,7 @@ printf ("res = %lf\n", resd);
 /*
  * 
  * 
- * Tests fonction mncblas_cnrm2 (avec des complexe_float_t)
+ * Tests fonction mncblas_scnrm2 (avec des complexe_float_t)
  * 
  * 
  */
@@ -131,10 +131,10 @@ printf ("res = %lf\n", resd);
        }
     
      start_tsc = _rdtsc () ;
-        resf = mncblas_cnrm2 (VECSIZE, vcomplexefloat1, (const int)1) ;
+        resf = mncblas_scnrm2 (VECSIZE, vcomplexefloat1, (const int)1) ;
      end_tsc = _rdtsc ();
      
-     calcul_flop_tsc ("mncblas_cnrm2 nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mncblas_scnrm2 nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("res = %f\n", resf);
  printf ("==========================================================\n") ;
@@ -148,10 +148,10 @@ printf ("res = %f\n", resf);
        }
      
      TOP_MICRO(start) ;
-        resf = mncblas_cnrm2 (VECSIZE, vcomplexefloat1, (const int)1) ;
+        resf = mncblas_scnrm2 (VECSIZE, vcomplexefloat1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_cnrm2 micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mncblas_scnrm2 micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("res = %f\n", resf);
  printf ("==========================================================\n") ;
@@ -160,7 +160,7 @@ printf ("res = %f\n", resf);
 /*
  * 
  * 
- * Tests fonction mncblas_znrm2 (avec des complexe_double_t)
+ * Tests fonction mncblas_dznrm2 (avec des complexe_double_t)
  * 
  * 
  */
@@ -173,10 +173,10 @@ printf ("res = %f\n", resf);
        }
     
      start_tsc = _rdtsc () ;
-        resd = mncblas_znrm2 (VECSIZE, vcomplexedouble1, (const int)1) ;
+        resd = mncblas_dznrm2 (VECSIZE, vcomplexedouble1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_znrm2 nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mncblas_dznrm2 nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("res = %lf\n", resd);
  printf ("==========================================================\n") ;
@@ -190,10 +190,10 @@ printf ("res = %lf\n", resd);
        }
      
      TOP_MICRO(start) ;
-        resd = mncblas_znrm2 (VECSIZE, vcomplexedouble1, (const int)1);
+        resd = mncblas_dznrm2 (VECSIZE, vcomplexedouble1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_znrm2 micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mncblas_dznrm2 micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("res = %lf\n", resd);
  printf ("==========================================================\n") ;
