@@ -5,7 +5,7 @@
 
 //Computes the global index of the element of a distributed vector with maximum absolute value.
 
-int mncblas_samax(const int N, const float *X, const int incX, void* maximum)
+int mncblas_isamax(const int N, const float *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
@@ -25,7 +25,7 @@ int mncblas_samax(const int N, const float *X, const int incX, void* maximum)
   return index;
 }
 
-int mncblas_damax(const int N, const double *X, const int incX, void* maximum)
+int mncblas_isamax(const int N, const double *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
@@ -45,7 +45,7 @@ int mncblas_damax(const int N, const double *X, const int incX, void* maximum)
   return index;
 }
 
-int mncblas_camax(const int N, const void *X, const int incX, void* maximum)
+int mncblas_icamax(const int N, const void *X, const int incX, void* maximum)
 {
   //done
   register unsigned int i = 0 ;
@@ -67,7 +67,7 @@ int mncblas_camax(const int N, const void *X, const int incX, void* maximum)
   return index;
 }
 
-int mncblas_zamax(const int N, const void *X, const int incX, void* maximum)
+int mncblas_izamax(const int N, const void *X, const int incX, void* maximum)
 {
    //done
   register unsigned int i = 0 ;

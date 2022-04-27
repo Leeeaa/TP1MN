@@ -36,7 +36,7 @@ double mncblas_dasum(const int N, const double *X, const int incX)
   return dasum ;
 }
 
-float mncblas_casum(const int N, const void *X, const int incX)
+float mncblas_scasum(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -52,7 +52,7 @@ float mncblas_casum(const int N, const void *X, const int incX)
   return casum ;
 }
 
-double mncblas_zasum(const int N, const void *X, const int incX)
+double mncblas_dzasum(const int N, const void *X, const int incX)
 {
   
   register unsigned int i = 0 ;

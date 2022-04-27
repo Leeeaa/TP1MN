@@ -37,7 +37,7 @@ double mncblas_dnrm2(const int N, const double *X, const int incX)
   return dnorm2;
 }
 
-float mncblas_cnrm2(const int N, const void *X, const int incX)
+float mncblas_scnrm2(const int N, const void *X, const int incX)
 {
   //done
   register unsigned int i = 0 ;
@@ -53,7 +53,7 @@ float mncblas_cnrm2(const int N, const void *X, const int incX)
   return cnorm2;
 }
 
-double mncblas_znrm2(const int N, const void *X, const int incX)
+double mncblas_dznrm2(const int N, const void *X, const int incX)
 {
    //done
   register unsigned int i = 0 ;

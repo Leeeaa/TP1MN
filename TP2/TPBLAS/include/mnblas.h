@@ -90,7 +90,7 @@ void   mncblas_zdotc_sub(const int N, const void *X, const int incX,
   BLAS AXPY
 */
 
-/*
+
 
 void mnblas_saxpy(const int N, const float alpha, const float *X,
                  const int incX, float *Y, const int incY);
@@ -104,9 +104,9 @@ void mnblas_caxpy(const int N, const void *alpha, const void *X,
 void mnblas_zaxpy(const int N, const void *alpha, const void *X,
                  const int incX, void *Y, const int incY);
 
-*/
 
-/*
+
+
 
 float  mnblas_sasum(const int N, const float *X, const int incX);
 
@@ -116,9 +116,9 @@ float  mnblas_scasum(const int N, const void *X, const int incX);
 
 double mnblas_dzasum(const int N, const void *X, const int incX);
 
-*/
 
-/*
+
+
 CBLAS_INDEX mnblas_isamax(const int N, const float  *X, const int incX);
 
 CBLAS_INDEX mnblas_idamax(const int N, const double *X, const int incX);
@@ -126,9 +126,9 @@ CBLAS_INDEX mnblas_idamax(const int N, const double *X, const int incX);
 CBLAS_INDEX mnblas_icamax(const int N, const void   *X, const int incX);
 
 CBLAS_INDEX mnblas_izamax(const int N, const void   *X, const int incX);
-*/
 
-/*
+
+
 float  mnblas_snrm2(const int N, const float *X, const int incX);
 
 double mnblas_dnrm2(const int N, const double *X, const int incX);
@@ -137,7 +137,7 @@ float  mnblas_scnrm2(const int N, const void *X, const int incX);
 
 double mnblas_dznrm2(const int N, const void *X, const int incX);
 
- */
+
 
 
 /*
