@@ -74,7 +74,7 @@ int mnblas_izamin(const int N, const void *X, const int incX)
   for (i = 1 ; i < N ; i += incX)
     {
       double len = pow( (((complexe_double_t*)X)[i].real) * (((complexe_double_t*)X)[i].real) + (((complexe_double_t*)X)[i].imaginary) * (((complexe_double_t*)X)[i].imaginary), 0.5 );
-      if (len > min)
+      if (len < min)
       {
         min = len;
         index = i;
