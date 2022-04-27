@@ -17,13 +17,13 @@ vcomplexe_float_t vcomplexefloat1, vcomplexefloat2;
 
 
 /*
-float   mncblas_sasum(const int N, const float *X, const int incX, 
+float   mnblas_sasum(const int N, const float *X, const int incX, 
                  const float *Y, const int incY)
-double  mncblas_dasum(const int N, const double *X, const int incX, 
+double  mnblas_dasum(const int N, const double *X, const int incX, 
                  const double *Y, const int incY)
-float   mncblas_scasum(const int N, const void *X, const int incX,
+float   mnblas_scasum(const int N, const void *X, const int incX,
                        const void *Y, const int incY)
-double   mncblas_dzasum(const int N, const void *X, const int incX,
+double   mnblas_dzasum(const int N, const void *X, const int incX,
                        const void *Y, const int incY)
 */
 
@@ -37,7 +37,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_sasum (avec des float)
+ * Tests fonction mnblas_sasum (avec des float)
  * 
  * 
  */
@@ -53,10 +53,10 @@ int main (int argc, char **argv)
        }
     
      start_tsc = _rdtsc () ;
-        res1 = mncblas_sasum (VECSIZE, vfloat1, (const int)1, vfloat2, (const int)1) ;
+        res1 = mnblas_sasum (VECSIZE, vfloat1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_sasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_sasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("res = %f\n", res1) ;
  printf ("==========================================================\n") ;
@@ -72,10 +72,10 @@ int main (int argc, char **argv)
         res1 = 0.0 ;
      
      TOP_MICRO(start) ;
-        res1 = mncblas_sasum (VECSIZE, vfloat1, (const int)1, vfloat2, (const int)1) ;
+        res1 = mnblas_sasum (VECSIZE, vfloat1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_sasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_sasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("res = %f\n", res1) ;
  printf ("==========================================================\n") ;
@@ -85,7 +85,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_dasum (avec des double)
+ * Tests fonction mnblas_dasum (avec des double)
  * 
  * 
  */
@@ -100,10 +100,10 @@ double res2 = 0.0;
        }
     
      start_tsc = _rdtsc () ;
-        res2 = mncblas_dasum (VECSIZE, vdouble1, (const int)1, vdouble2, (const int)1) ;
+        res2 = mnblas_dasum (VECSIZE, vdouble1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_dasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_dasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("res = %f\n", res2) ;
  printf ("==========================================================\n") ;
@@ -119,10 +119,10 @@ double res2 = 0.0;
         res2 = 0.0 ;
      
      TOP_MICRO(start) ;
-        res2 = mncblas_dasum (VECSIZE, vdouble1, (const int)1, vdouble2, (const int)1) ;
+        res2 = mnblas_dasum (VECSIZE, vdouble1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_dasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_dasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("res = %lf\n", res2) ;
  printf ("==========================================================\n") ;
@@ -131,7 +131,7 @@ double res2 = 0.0;
 /*
  * 
  * 
- * Tests fonction mncblas_scasum (avec des complexe_float_t)
+ * Tests fonction mnblas_scasum (avec des complexe_float_t)
  * 
  * 
  */
@@ -147,10 +147,10 @@ float res3 = 0.0 ;
      res3 = 0.0 ;
     
      start_tsc = _rdtsc () ;
-        res3 = mncblas_scasum (VECSIZE, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
+        res3 = mnblas_scasum (VECSIZE, vcomplexefloat1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_scasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_scasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("res = %f\n", res3) ;
  printf ("==========================================================\n") ;
@@ -166,10 +166,10 @@ float res3 = 0.0 ;
         res3 = 0.0 ;
      
      TOP_MICRO(start) ;
-        res3 = mncblas_scasum (VECSIZE, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
+        res3 = mnblas_scasum (VECSIZE, vcomplexefloat1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_scasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_scasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("res = %f\n", res3) ;
  printf ("==========================================================\n") ;
@@ -178,7 +178,7 @@ float res3 = 0.0 ;
 /*
  * 
  * 
- * Tests fonction mncblas_dzasum (avec des complexe_double_t)
+ * Tests fonction mnblas_dzasum (avec des complexe_double_t)
  * 
  * 
  */
@@ -194,10 +194,10 @@ double res4 = 0.0;
      res4 = 0.0 ;
     
      start_tsc = _rdtsc () ;
-        res4 = mncblas_dzasum (VECSIZE, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
+        res4 = mnblas_dzasum (VECSIZE, vcomplexedouble1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_dzasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_dzasum nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("res = %f\n", res4) ;
  printf ("==========================================================\n") ;
@@ -213,10 +213,10 @@ double res4 = 0.0;
         res4 = 0.0 ;
      
      TOP_MICRO(start) ;
-        res4 = mncblas_dzasum (VECSIZE, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
+        res4 = mnblas_dzasum (VECSIZE, vcomplexedouble1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_dzasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_dzasum micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("res = %lf\n", res4) ;
  printf ("==========================================================\n") ;

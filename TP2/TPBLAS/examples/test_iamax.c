@@ -16,10 +16,10 @@ vcomplexe_double_t vcomplexedouble1;
 vcomplexe_float_t vcomplexefloat1;
 
 /*
-int mncblas_isamax(const int N, const float *X, const int incX, void* maximum)
-int mncblas_idamax(const int N, const double *X, const int incX, void* maximum)
-int mncblas_icamax(const int N, const void *X, const int incX, void* maximum)
-int mncblas_izamax(const int N, const void *X, const int incX, void* maximum)
+int mnblas_isamax(const int N, const float *X, const int incX, void* maximum)
+int mnblas_idamax(const int N, const double *X, const int incX, void* maximum)
+int mnblas_icamax(const int N, const void *X, const int incX, void* maximum)
+int mnblas_izamax(const int N, const void *X, const int incX, void* maximum)
 */
 
 
@@ -32,7 +32,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_isamax (avec des float)
+ * Tests fonction mnblas_isamax (avec des float)
  * 
  * 
  */
@@ -45,10 +45,10 @@ int main (int argc, char **argv)
            vfloat1[i] = 3.0+i;
        }
      start_tsc = _rdtsc () ;
-        res = mncblas_isamax (VECSIZE, vfloat1, (const int)1, max);
+        res = mnblas_isamax (VECSIZE, vfloat1, (const int)1);
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_isamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_isamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("max at index index %d : %f\n", res, *((float*)max));
  printf ("==========================================================\n") ;
@@ -62,10 +62,10 @@ int main (int argc, char **argv)
         }
      
      TOP_MICRO(start) ;
-        res = mncblas_isamax (VECSIZE, vfloat1, (const int)1, max);
+        res = mnblas_isamax (VECSIZE, vfloat1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_isamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_isamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("max at index index %d : %f\n", res, *((float*)max));
  printf ("==========================================================\n") ;
@@ -75,7 +75,7 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
 /*
  * 
  * 
- * Tests fonction mncblas_idamax (avec des double)
+ * Tests fonction mnblas_idamax (avec des double)
  * 
  * 
  */
@@ -88,10 +88,10 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
        }
     
      start_tsc = _rdtsc () ;
-        res = mncblas_idamax (VECSIZE, vdouble1,(const int)1, max);
+        res = mnblas_idamax (VECSIZE, vdouble1,(const int)1);
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_idamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_idamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("max at index index %d : %lf\n", res, *((double*)max));
  printf ("==========================================================\n") ;
@@ -105,10 +105,10 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
         }
      
      TOP_MICRO(start) ;
-        res = mncblas_idamax (VECSIZE, vdouble1, (const int)1, max);
+        res = mnblas_idamax (VECSIZE, vdouble1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_idamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_idamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("max at index index %d : %lf\n", res, *((double*)max));
  printf ("==========================================================\n") ;
@@ -117,7 +117,7 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
 /*
  * 
  * 
- * Tests fonction mncblas_icamax (avec des complexe_float_t)
+ * Tests fonction mnblas_icamax (avec des complexe_float_t)
  * 
  * 
  */
@@ -131,10 +131,10 @@ printf ("max at index index %d : %f\n", res, *((float*)max));
      res = 0.0 ;
     
      start_tsc = _rdtsc () ;
-        res = mncblas_icamax (VECSIZE, vcomplexefloat1, (const int)1, max) ;
+        res = mnblas_icamax (VECSIZE, vcomplexefloat1, (const int)1) ;
      end_tsc = _rdtsc ();
      
-     calcul_flop_tsc ("mncblas_icamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_icamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
  printf ("==========================================================\n") ;
@@ -148,10 +148,10 @@ printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->rea
        }
      
      TOP_MICRO(start) ;
-        res = mncblas_icamax (VECSIZE, vcomplexefloat1, (const int)1, max) ;
+        res = mnblas_icamax (VECSIZE, vcomplexefloat1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_icamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_icamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->real,((complexe_float_t*)max)->imaginary );
  printf ("==========================================================\n") ;
@@ -160,7 +160,7 @@ printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->rea
 /*
  * 
  * 
- * Tests fonction mncblas_izamax (avec des complexe_double_t)
+ * Tests fonction mnblas_izamax (avec des complexe_double_t)
  * 
  * 
  */
@@ -173,10 +173,10 @@ printf ("max at index index %d : (%f, %f)\n", res, ((complexe_float_t*)max)->rea
        }
     
      start_tsc = _rdtsc () ;
-        res = mncblas_izamax (VECSIZE, vcomplexedouble1, (const int)1, max) ;
+        res = mnblas_izamax (VECSIZE, vcomplexedouble1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_izamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_izamax nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
  printf ("==========================================================\n") ;
@@ -190,10 +190,10 @@ printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->
        }
      
      TOP_MICRO(start) ;
-        res = mncblas_izamax (VECSIZE, vcomplexedouble1, (const int)1, max);
+        res = mnblas_izamax (VECSIZE, vcomplexedouble1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_izamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_izamax micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("max at index index %d : (%lf, %lf)\n", res, ((complexe_double_t*)max)->real,((complexe_double_t*)max)->imaginary );
  printf ("==========================================================\n") ;

@@ -6,13 +6,13 @@
 #include "flop.h"
 
 /*
-mncblas_saxpy(const int N, const float a, const float *X, const int incX, 
+mnblas_saxpy(const int N, const float a, const float *X, const int incX, 
                  float *Y, const int incY)
-mncblas_daxpy(const int N, const double a, const double *X, const int incX, 
+mnblas_daxpy(const int N, const double a, const double *X, const int incX, 
                  double *Y, const int incY)
-mncblas_caxpy(const int N, const void* a, const void *X, const int incX, 
+mnblas_caxpy(const int N, const void* a, const void *X, const int incX, 
 		                    void *Y, const int incY)
-mncblas_zaxpy(const int N, const void* a, const void *X, const int incX, 
+mnblas_zaxpy(const int N, const void* a, const void *X, const int incX, 
 		                    void *Y, const int incY)
 */
 #define VECSIZE    65536
@@ -39,7 +39,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_saxpy (avec des float)
+ * Tests fonction mnblas_saxpy (avec des float)
  * 
  * 
  */
@@ -55,10 +55,10 @@ int main (int argc, char **argv)
      const float a = 5.5;
     
      start_tsc = _rdtsc () ;
-        mncblas_saxpy (VECSIZE, a, vfloat1, (const int)1, vfloat2, (const int)1) ;
+        mnblas_saxpy (VECSIZE, a, vfloat1, (const int)1, vfloat2, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_saxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_saxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
   // for (int i = 0; i < VECSIZE; i++)
   // {
@@ -78,10 +78,10 @@ int main (int argc, char **argv)
         const float a = 5.5;
      
      TOP_MICRO(start) ;
-        mncblas_saxpy (VECSIZE, a, vfloat1, (const int)1, vfloat2, (const int)1) ;
+        mnblas_saxpy (VECSIZE, a, vfloat1, (const int)1, vfloat2, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_saxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_saxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 //  for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -95,7 +95,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_daxpy (avec des double)
+ * Tests fonction mnblas_daxpy (avec des double)
  * 
  * 
  */
@@ -110,10 +110,10 @@ int main (int argc, char **argv)
      const float a = 5.5;
     
      start_tsc = _rdtsc () ;
-        mncblas_daxpy (VECSIZE, a, vdouble1, (const int)1, vdouble2, (const int)1) ;
+        mnblas_daxpy (VECSIZE, a, vdouble1, (const int)1, vdouble2, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_daxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_daxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 // for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -132,10 +132,10 @@ int main (int argc, char **argv)
         const float a = 5.5;
      
      TOP_MICRO(start) ;
-        mncblas_daxpy (VECSIZE, a, vdouble1, (const int)1, vdouble2, (const int)1) ;
+        mnblas_daxpy (VECSIZE, a, vdouble1, (const int)1, vdouble2, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_daxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_daxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 // for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -150,7 +150,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_caxpy (avec des complexe_float_t)
+ * Tests fonction mnblas_caxpy (avec des complexe_float_t)
  * 
  * 
  */
@@ -163,13 +163,14 @@ int main (int argc, char **argv)
             vcomplexefloat1[i] = (complexe_float_t){3.0,4.5};
             vcomplexefloat2[i] = (complexe_float_t){2.3,5.9};
        }
-     const float a = 5.5;
+      float temp = 5.5;
+      const void* a = &temp;
     
      start_tsc = _rdtsc () ;
-        mncblas_caxpy (VECSIZE, a, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
+        mnblas_caxpy (VECSIZE, a, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_caxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_caxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 // for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -185,13 +186,14 @@ int main (int argc, char **argv)
             vcomplexefloat1[i] = (complexe_float_t){3.0,4.5};
             vcomplexefloat2[i] = (complexe_float_t){2.3,5.9};
         }
-        const float a = 5.5;
+   float temp = 5.5;
+      const void* a = &temp;
      
      TOP_MICRO(start) ;
-      mncblas_caxpy (VECSIZE, a, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
+      mnblas_caxpy (VECSIZE, a, vcomplexefloat1, (const int)1, vcomplexefloat2, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_caxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_caxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 //  for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -205,7 +207,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mncblas_zaxpy (avec des complexe_double_t)
+ * Tests fonction mnblas_zaxpy (avec des complexe_double_t)
  * 
  * 
  */
@@ -218,14 +220,15 @@ int main (int argc, char **argv)
             vcomplexedouble1[i] = (complexe_double_t){3.0,4.5};
             vcomplexedouble2[i] = (complexe_double_t){2.3,5.9};
        }
-     const float a = 5.5;
+   float temp = 5.5;
+      const void* a = &temp;
 
     
      start_tsc = _rdtsc () ;
-        mncblas_zaxpy (VECSIZE, a, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
+        mnblas_zaxpy (VECSIZE, a, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mncblas_zaxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_zaxpy nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 // for (int i = 0; i < VECSIZE; i++)
 //   {
@@ -241,13 +244,14 @@ int main (int argc, char **argv)
             vcomplexedouble1[i] = (complexe_double_t){3.0,4.5};
             vcomplexedouble2[i] = (complexe_double_t){2.3,5.9};
         }
-        const float a = 5.5;
+   float temp = 5.5;
+      const void* a = &temp;
      
      TOP_MICRO(start) ;
-      mncblas_zaxpy (VECSIZE, a, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
+      mnblas_zaxpy (VECSIZE, a, vcomplexedouble1, (const int)1, vcomplexedouble2, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mncblas_zaxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_zaxpy micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 // for (int i = 0; i < VECSIZE; i++)
 //   {
