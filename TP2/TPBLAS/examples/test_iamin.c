@@ -16,10 +16,10 @@ vcomplexe_double_t vcomplexedouble1;
 vcomplexe_float_t vcomplexefloat1;
 
 /*
-int mnblas_samin(const int N, const float *X, const int incX, void* min)
-int mnblas_damin(const int N, const double *X, const int incX, void* min)
-int mnblas_camin(const int N, const void *X, const int incX, void* min)
-int mnblas_zamin(const int N, const void *X, const int incX, void* min)
+int mnblas_isamin(const int N, const float *X, const int incX, void* min)
+int mnblas_idamin(const int N, const double *X, const int incX, void* min)
+int mnblas_icamin(const int N, const void *X, const int incX, void* min)
+int mnblas_izamin(const int N, const void *X, const int incX, void* min)
 */
 
 
@@ -31,7 +31,7 @@ int main (int argc, char **argv)
 /*
  * 
  * 
- * Tests fonction mnblas_samin (avec des float)
+ * Tests fonction mnblas_isamin (avec des float)
  * 
  * 
  */
@@ -44,10 +44,10 @@ int main (int argc, char **argv)
            vfloat1[i] = 3.0 + i;
        }
      start_tsc = _rdtsc () ;
-        res = mnblas_samin (VECSIZE, vfloat1, (const int)1);
+        res = mnblas_isamin (VECSIZE, vfloat1, (const int)1);
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mnblas_samin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_isamin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -61,10 +61,10 @@ int main (int argc, char **argv)
         }
      
      TOP_MICRO(start) ;
-        res = mnblas_samin (VECSIZE, vfloat1, (const int)1);
+        res = mnblas_isamin (VECSIZE, vfloat1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mnblas_samin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_isamin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -74,7 +74,7 @@ printf ("min at index %d\n", res);
 /*
  * 
  * 
- * Tests fonction mnblas_damin (avec des double)
+ * Tests fonction mnblas_idamin (avec des double)
  * 
  * 
  */
@@ -87,10 +87,10 @@ printf ("min at index %d\n", res);
        }
     
      start_tsc = _rdtsc () ;
-        res = mnblas_damin (VECSIZE, vdouble1,(const int)1);
+        res = mnblas_idamin (VECSIZE, vdouble1,(const int)1);
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mnblas_damin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_idamin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
  printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -104,10 +104,10 @@ printf ("min at index %d\n", res);
         }
      
      TOP_MICRO(start) ;
-        res = mnblas_damin (VECSIZE, vdouble1, (const int)1);
+        res = mnblas_idamin (VECSIZE, vdouble1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mnblas_damin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_idamin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -116,7 +116,7 @@ printf ("min at index %d\n", res);
 /*
  * 
  * 
- * Tests fonction mnblas_camin (avec des complexe_float_t)
+ * Tests fonction mnblas_icamin (avec des complexe_float_t)
  * 
  * 
  */
@@ -129,10 +129,10 @@ printf ("min at index %d\n", res);
        }
     
      start_tsc = _rdtsc () ;
-        res = mnblas_camin (VECSIZE, vcomplexefloat1, (const int)1) ;
+        res = mnblas_icamin (VECSIZE, vcomplexefloat1, (const int)1) ;
      end_tsc = _rdtsc ();
      
-     calcul_flop_tsc ("mnblas_camin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_icamin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -146,10 +146,10 @@ printf ("min at index %d\n", res);
        }
      
      TOP_MICRO(start) ;
-        res = mnblas_camin (VECSIZE, vcomplexefloat1, (const int)1) ;
+        res = mnblas_icamin (VECSIZE, vcomplexefloat1, (const int)1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mnblas_camin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_icamin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -158,7 +158,7 @@ printf ("min at index %d\n", res);
 /*
  * 
  * 
- * Tests fonction mnblas_zamin (avec des complexe_double_t)
+ * Tests fonction mnblas_izamin (avec des complexe_double_t)
  * 
  * 
  */
@@ -171,10 +171,10 @@ printf ("min at index %d\n", res);
        }
     
      start_tsc = _rdtsc () ;
-        res = mnblas_zamin (VECSIZE, vcomplexedouble1, (const int)1) ;
+        res = mnblas_izamin (VECSIZE, vcomplexedouble1, (const int)1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("mnblas_zamin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mnblas_izamin nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
 printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
@@ -188,10 +188,10 @@ printf ("min at index %d\n", res);
        }
      
      TOP_MICRO(start) ;
-        res = mnblas_zamin (VECSIZE, vcomplexedouble1, (const int)1);
+        res = mnblas_izamin (VECSIZE, vcomplexedouble1, (const int)1);
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("mnblas_zamin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mnblas_izamin micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
  printf ("min at index %d\n", res);
  printf ("==========================================================\n") ;
