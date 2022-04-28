@@ -1,8 +1,6 @@
 #include <stdio.h>
-
 #include "mnblas.h"
 #include "complexe.h"
-
 #include "flop.h"
 
 #define VECSIZE    65536
@@ -10,29 +8,14 @@
 #define NB_FOIS    10
 
 typedef float vfloat [VECSIZE] ;
+typedef double vdouble [VECSIZE] ;
+typedef complexe_float_t vcomplexefloat [VECSIZE] ;
+typedef complexe_double_t vcomplexedouble [VECSIZE] ;
 
-vfloat vec1, vec2 ;
-
-void vector_init (vfloat V, float x)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    V [i] = x ;
-
-  return ;
-}
-
-void vector_print (vfloat V)
-{
-  register unsigned int i ;
-
-  for (i = 0; i < VECSIZE; i++)
-    printf ("%f ", V[i]) ;
-  printf ("\n") ;
-  
-  return ;
-}
+vfloat vfloat1, vfloat2 ;
+vdouble vdouble1, vdouble2 ;
+vcomplexefloat vcomplexefloat1, vcomplexefloat2 ;
+vcomplexedouble vcomplexedouble1, vcomplexedouble2 ;
 
 int main (int argc, char **argv)
 {
@@ -42,36 +25,29 @@ int main (int argc, char **argv)
  float res ;
  int i ;
 
+for (int i = 0; i < VECSIZE; i++)
+{
+  vfloat1[i] = 5;
+  vfloat2[i] = 5;
+  vdouble1[i] = 5;
+  vdouble2[i] = 5;
+  vcomplexefloat1[i] = (complexe_float_t){5,5};
+  vcomplexefloat2[i] = (complexe_float_t){5,5};
+  vcomplexedouble1[i] = (complexe_double_t){5,5};
+  vcomplexedouble2[i] = (complexe_double_t){5,5};
+}
+
+    // ------------ test fonction mncblas_sdot --------------- 
  init_flop_tsc () ;
- 
  for (i = 0 ; i < NB_FOIS; i++)
    {
-     vector_init (vec1, 1.0) ;
-     vector_init (vec2, 2.0) ;
      res = 0.0 ;
-     
      start_tsc = _rdtsc () ;
-        res = mncblas_sdot (VECSIZE, vec1, 1, vec2, 1) ;
+        res = mncblas_sdot (VECSIZE, vfloat1, 1, vfloat1, 1) ;
      end_tsc = _rdtsc () ;
      
-     calcul_flop_tsc ("sdot nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_tsc ("mncblas_sdot nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
    }
-
-
-  /*dot : The dot functions compute the dot product dot of two distributed REAL vectors
-   res = I1*J1+I2*J2+...+In*Jn
-  
-
-    // ------------ test fonction sdot --------------- 
-
-    float Xf[10] = {0,1,2,3,4,5,6,7,8,9};
-    //float Xfbis[20] = {0,1,2,3,4,5,6,7,8,9,20,21,22,23,24,25,26,27,28,29};
-    float Yf[10] = {10,11,12,13,14,15,16,17,18,19};
-
-        
-    printf("resultat test sdot : %f \n", mncblas_sdot(10,Xf,1,Yf,1));
-    //printf ("resultat: %f \n", mncblas_sdot(10,Xfbis,2,Yf,1));
-    */
 
  printf ("res = %f\n", res) ;
  printf ("==========================================================\n") ;
@@ -80,92 +56,163 @@ int main (int argc, char **argv)
  
  for (i = 0 ; i < NB_FOIS; i++)
    {
-     vector_init (vec1, 1.0) ;
-     vector_init (vec2, 2.0) ;
      res = 0.0 ;
-     
      TOP_MICRO(start) ;
-        res = mncblas_sdot (VECSIZE, vec1, 1, vec2, 1) ;
+        res = mncblas_sdot (VECSIZE, vfloat1, 1, vfloat1, 1) ;
      TOP_MICRO(end) ;
      
-     calcul_flop_micro ("sdot micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+     calcul_flop_micro ("mncblas_sdot micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 
  printf ("res = %f\n", res) ;
  printf ("==========================================================\n") ;
 
+
+
+
+   // ------------ test fonction mncblas_ddot --------------- 
  init_flop_tsc () ;
+     double resd = 0.0 ;
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     resd = 0.0 ;
+     start_tsc = _rdtsc () ;
+        resd = mncblas_ddot (VECSIZE, vdouble1, 1, vdouble2, 1) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_ddot nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+
+ printf ("res = %f\n", resd) ;
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
  
  for (i = 0 ; i < NB_FOIS; i++)
    {
-     vector_init (vec1, 1.0) ;
-     vector_init (vec2, 2.0) ;
-     res = 0.0 ;
+     resd = 0.0 ;
+     TOP_MICRO(start) ;
+        resd = mncblas_ddot (VECSIZE, vfloat1, 1, vfloat1, 1) ;
+     TOP_MICRO(end) ;
      
-     start_tsc = _rdtsc () ;
-        res = mncblas_sdot (VECSIZE, vec1, 1, vec2, 1) ;
-     end_tsc = _rdtsc () ;
-     
-     calcul_flop_nano ("sdot nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+     calcul_flop_micro ("mncblas_ddot micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
    }
 
- printf ("res = %f\n", res) ;
+ printf ("res = %f\n", resd) ;
  printf ("==========================================================\n") ;
 
+
+    // ------------ test fonction mncblas_cdotu_sub --------------- 
+    void* dotu;
+ init_flop_tsc () ;
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     start_tsc = _rdtsc () ;
+     mncblas_cdotu_sub (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1, dotu) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_cdotu_sub nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ 
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     TOP_MICRO(start) ;
+     mncblas_cdotu_sub (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1, dotu) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_cdotu_sub micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+
+ printf ("==========================================================\n") ;
+
+
+    // ------------ test fonction mncblas_cdotc_sub --------------- 
+ init_flop_tsc () ;
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     start_tsc = _rdtsc () ;
+     mncblas_cdotc_sub (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1, dotu) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_cdotc_sub nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ 
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     TOP_MICRO(start) ;
+     mncblas_cdotc_sub (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1, dotu) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_cdotc_sub micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+
+ printf ("==========================================================\n") ;
+
+
+
+
+    // ------------ test fonction mncblas_zdotu_sub --------------- 
+ init_flop_tsc () ;
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     res = 0.0 ;
+     start_tsc = _rdtsc () ;
+     mncblas_zdotu_sub (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1, dotu) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_zdotu_sub nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ 
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     res = 0.0 ;
+     TOP_MICRO(start) ;
+     mncblas_zdotu_sub (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1, dotu) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_zdotu_sub micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+
+ printf ("==========================================================\n") ;
+
+
+
+
+    // ------------ test fonction mncblas_zdotc_sub --------------- 
+ init_flop_tsc () ;
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     start_tsc = _rdtsc () ;
+     mncblas_zdotc_sub (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1, dotu) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_zdotc_sub nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ 
+ for (i = 0 ; i < NB_FOIS; i++)
+   {
+     TOP_MICRO(start) ;
+     mncblas_zdotc_sub (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1, dotu) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_zdotc_sub micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+
+ printf ("==========================================================\n") ;
+
+
 }
-
-    /*
-    // ------------ test fonction ddot ---------------  
-
-    double Xd[10] = {0,1,2,3,4,5,6,7,8,9};
-    double Yd[10] = {10,11,12,13,14,15,16,17,18,19};
-
-    printf("resultat test ddot : %f \n", mncblas_ddot(10,Xd,1,Yd,1));
-
-    */
-
-
-    /*dotu : The dotu functions compute the dot product dot of two distributed COMPLEX vectors
-   res = I1*J1+I2*J2+...+In*Jn
-  
-
-    // ------------ test fonction dotu --------------- 
-                         
-    complexe_float_t c1= (complexe_float_t){1.0, 1.0} ;
-    complexe_float_t c2= (complexe_float_t){2.0, 2.0} ;
-    complexe_float_t c3= (complexe_float_t){3.0, 4.0} ;
-    complexe_float_t d = (complexe_float_t){0.0, 0.0} ;
-    
-    complexe_float_t Xc[3] = {c1, c2, c3};
-    complexe_float_t Yc[3] = {c3, c2, c1};
-
-    void* dotu = &d;
-
-    mncblas_cdotu_sub(3, Xc, 1, Yc, 1, dotu);
-    for (int i = 0; i < 3; i++)
-    {
-  
-    }
-    */
-
-    /*dotc : The dotc functions compute the dot product dotc of two COMPLEX vectors one of them is CONJUGATED
-    res = conj(I1)*J1+conj(I2)*J2+...+conj(In)*Jn
-    */
-
-    /*
-    const complexe_float_t c1= (complexe_float_t){1.0, 1.0} ;
-    const complexe_float_t c2= (complexe_float_t){2.0, 2.0} ;
-    const complexe_float_t c3= (complexe_float_t){3.0, 4.0} ;
-    const complexe_float_t d = (complexe_float_t){0.0, 0.0} ;
-
-    const complexe_float_t Xc[3] = {c1, c2, c3};
-    const complexe_float_t Yc[3] = {c3, c2, c1};
-
-    void* dotc = &d;
-
-    const int N = 3;
-    const int M = 1;
-
-    mncblas_cdotc_sub(N, (void*)Xc, M, (void*)Yc, M, dotc);
-    printf("Valeur %f, %f \n",  (*((complexe_float*)dotc)).real, (*((complexe_float*)dotc)).imaginary);
-    */  
