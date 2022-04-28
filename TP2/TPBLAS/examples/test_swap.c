@@ -1,86 +1,178 @@
-//#include "../src/swap.c"
 #include <stdio.h>
-
 #include "mnblas.h"
 #include "complexe.h"
-
 #include "flop.h"
 
+#define VECSIZE    65536
+#define NB_FOIS    10
 
-int main()
+typedef float vfloat [VECSIZE] ;
+typedef double vdouble [VECSIZE];
+typedef complexe_double_t vcomplexe_double_t [VECSIZE];
+typedef complexe_float_t vcomplexe_float_t [VECSIZE];
+
+vfloat vfloat1;
+vfloat vfloat2;
+vdouble vdouble1;
+vdouble vdouble2;
+vcomplexe_double_t vcomplexedouble1;
+vcomplexe_double_t vcomplexedouble2;
+vcomplexe_float_t vcomplexefloat1;
+vcomplexe_float_t vcomplexefloat2;
+
+
+
+/*
+void mncblas_sswap
+void mncblas_dswap
+void mncblas_cswap
+void mncblas_zswap
+*/
+
+
+int main (int argc, char **argv)
 {
-
-    // ------------ test fonction sswap --------------- 
-    //float Xf[10] = {0,1,2,3,4,5,6,7,8,9};
-    float Xfbis[20] = {0,1,2,3,4,5,6,7,8,9,20,21,22,23,24,25,26,27,28,29};
-    float Yf[10] = {10,11,12,13,14,15,16,17,18,19};
-
-
-    //mncblas_sswap(10,Xf,1,Yf,1);
-    for (int i = 0; i < 10; i++)
-    {
-       // printf("Valeur %d : %lf \n", i, Xf[i]);
-       // printf("Valeur %d : %lf \n", i, Yf[i]);
-    }
-    int incr = 2;
-    mncblas_sswap(20,Xfbis,incr,Yf,1);
-    for (int i = 0; i < 10; i++)
-    {
-        //printf("Valeurx %d : %lf \n", i, Xfbis[i*incr]);
-        //printf("Valeury %d : %lf \n", i, Yf[i]);
+    struct timeval start, end ;
+    unsigned long long int start_tsc, end_tsc ;
+    int incr = 1;
+    for (int i = 0; i < VECSIZE; i++){
+        vfloat1[i] = (float)i;
+        vfloat2[i] = VECSIZE - (float)i;
+        vdouble1[i] = (double)i;
+        vdouble2[i] = VECSIZE - (double)i;
+        vcomplexefloat1[i] = (complexe_float_t){i, i};
+        vcomplexefloat2[i] = (complexe_float_t){VECSIZE - i, VECSIZE - i};
+        vcomplexedouble1[i] = (complexe_double_t){i, i};
+        vcomplexedouble2[i] = (complexe_double_t){VECSIZE - i, VECSIZE - i};
     }
 
 
-    // ------------ test fonction dswap --------------- 
-    double Xd[10] = {0,1,2,3,4,5,6,7,8,9};
-    double Yd[10] = {10,11,12,13,14,15,16,17,18,19};
+/*
+ * 
+ * 
+ * Tests fonction mncblas_sswap (avec des float)
+ * 
+ * 
+ */
 
-    mncblas_dswap(10,Xd,1,Yd,1);
-    for (int i = 0; i < 10; i++)
+ init_flop_tsc () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
+     start_tsc = _rdtsc () ;
+        mncblas_sswap(VECSIZE, vfloat1 , 1, vfloat2, 1);
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_sswap nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
+     
+     TOP_MICRO(start) ;
+        mncblas_sswap(VECSIZE, vfloat1 , 1, vfloat2, 1);
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_sswap micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+ printf ("==========================================================\n") ;
+
+
+
+/*
+ * 
+ * 
+ * Tests fonction mncblas_dswap (avec des double)
+ * 
+ * 
+ */
+ init_flop_tsc () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
+     start_tsc = _rdtsc () ;
+    mncblas_dswap (VECSIZE, vdouble1, 1, vdouble2, 1);
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_dswap nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
+     
+     TOP_MICRO(start) ;
+    mncblas_dswap (VECSIZE, vdouble1, 1, vdouble2, 1);
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_dswap micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+ printf ("==========================================================\n") ;
+
+
+/*
+ * 
+ * 
+ * Tests fonction mncblas_cswap (avec des complexe_float_t)
+ * 
+ * 
+ */
+ init_flop_tsc () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
     {
-       // printf("Valeur %d : %lf \n", i, Xd[i]);
-       // printf("Valeur %d : %lf \n", i, Yd[i]);
-    }
-
-    // ------------ test fonction cswap --------------- 
-                         
-    complexe_float_t c1= (complexe_float_t){1.0, 1.0} ;
-    complexe_float_t c2= (complexe_float_t){2.0, 2.0} ;
-    complexe_float_t c3= (complexe_float_t){3.0, 4.0} ;
+   
     
-    complexe_float_t Xc[3] = {c1, c2, c3};
-    complexe_float_t Yc[3] = {c3, c2, c1};
+     start_tsc = _rdtsc () ;
+     mncblas_cswap (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1) ;
+     end_tsc = _rdtsc ();
+     
+     calcul_flop_tsc ("mncblas_cswap nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
 
-    mncblas_cswap(3,Xc,1,Yc,1);
-    for (int i = 0; i < 3; i++)
-    {
-        //printf("Valeur %d : %lf, %lf \n", i,  Xc[i].real, Xc[i].imaginary);
-        //printf("Valeur %d : %lf, %lf \n", i,  Yc[i].real, Yc[i].imaginary);
-
-    }
-       
-
-    // ------------ test fonction zswap --------------- 
-                          
-    complexe_double_t z1=  (complexe_double_t) {1.0, 2.0} ;
-    complexe_double_t z2= (complexe_double_t) {3.0, 4.0} ;
-    complexe_double_t z3= (complexe_double_t) {5.0, 6.0} ;
-    
-    complexe_double_t Xz[3] = {z1, z2, z3};
-    complexe_double_t Yz[3] = {z3, z2, z1};
-
-
-    mncblas_zswap(3,Xz,1,Yz,1);
-    for (int i = 0; i < 3; i++)
-    {
-        //printf("Valeur %d : %lf, %lf \n", i, Xz[i].real, Xz[i].imaginary);
-        //printf("Valeur %d : %lf, %lf \n", i, Yz[i].real, Yz[i].imaginary);
-    }
+     
+     TOP_MICRO(start) ;
+    mncblas_cswap (VECSIZE, vcomplexefloat1, 1, vcomplexefloat2, 1) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_cswap micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+ printf ("==========================================================\n") ;
 
 
-           
-    return 0;
-
-
+/*
+ * 
+ * 
+ * Tests fonction mncblas_zswap (avec des complexe_double_t)
+ * 
+ * 
+ */
+ init_flop_tsc () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {    
+     start_tsc = _rdtsc () ;
+     mncblas_zswap (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1) ;
+     end_tsc = _rdtsc () ;
+     
+     calcul_flop_tsc ("mncblas_zswap nano ", 2 * VECSIZE, end_tsc-start_tsc) ;
+   }
+ printf ("==========================================================\n") ;
+ 
+ init_flop_micro () ;
+ for (int i = 0 ; i < NB_FOIS; i++)
+   {
+     TOP_MICRO(start) ;
+        mncblas_zswap (VECSIZE, vcomplexedouble1, 1, vcomplexedouble2, 1) ;
+     TOP_MICRO(end) ;
+     
+     calcul_flop_micro ("mncblas_zswap micro", 2 * VECSIZE, tdiff_micro (&start, &end)) ;
+   }
+ printf ("==========================================================\n") ;
 
 }
