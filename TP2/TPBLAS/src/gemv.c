@@ -131,7 +131,8 @@ void mncblas_cgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[j*N+i]).real,(((complexe_float_t*)A)[j*N+i]).imaginary};
+                    complexe_float_t conjA = conj_complexe_float (((const complexe_float_t *)A)[j*N+i]);
+                    //complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[j*N+i]).real,(((complexe_float_t*)A)[j*N+i]).imaginary};
                     complexe_float_t temp = mult_complexe_float (conjA,((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
@@ -168,7 +169,8 @@ void mncblas_cgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_float_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[i*M+j]).real,(((complexe_float_t*)A)[i*M+j]).imaginary};
+                    complexe_float_t conjA = conj_complexe_float (((const complexe_float_t *)A)[i*M+j]);
+                    //complexe_float_t conjA = (complexe_float_t){(((complexe_float_t*)A)[i*M+j]).real,(((complexe_float_t*)A)[i*M+j]).imaginary};
                     complexe_float_t temp = mult_complexe_float (conjA,((complexe_float_t*)X)[j]);
                     sum = add_complexe_float(sum, temp);
                 }
@@ -215,7 +217,8 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[j*N+i]).real, (((complexe_double_t*)A)[j*N+i]).imaginary};
+                    complexe_double_t conjA = conj_complexe_double (((const complexe_double_t *)A)[j*N+i]);
+                    //complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[j*N+i]).real, (((complexe_double_t*)A)[j*N+i]).imaginary};
                     complexe_double_t temp = mult_complexe_double (conjA,((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
@@ -252,7 +255,8 @@ void mncblas_zgemv(MNCBLAS_LAYOUT layout,
             for(register int i = 0, j; i < N ; i+= incY) {
                 sum = (complexe_double_t) {0,0};
                 for(j = 0; j < M ; j+= incX) {
-                    complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[i*M+j]).real, (((complexe_double_t*)A)[i*M+j]).imaginary};
+                    complexe_double_t conjA = conj_complexe_double (((const complexe_double_t *)A)[i*M+j]);
+                    //complexe_double_t conjA = (complexe_double_t){(((complexe_double_t*)A)[i*M+j]).real, (((complexe_double_t*)A)[i*M+j]).imaginary};
                     complexe_double_t temp = mult_complexe_double (conjA,((complexe_double_t*)X)[j]);
                     sum = add_complexe_double(sum, temp);
                 }
